@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: .
+      target: runtime
+    image: simplechatbot
+    container_name: simplechatbot
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    ports:
+      - "8000:8000"
+    command: gunicorn "app:create_app()" --bind 0.0.0.0:8000 --reload
